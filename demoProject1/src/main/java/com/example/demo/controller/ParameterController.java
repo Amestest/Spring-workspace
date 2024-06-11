@@ -88,9 +88,9 @@ public class ParameterController {
 	
 	// 400 Bad Request(잘못된 요청)
 	// - 파라미터 불충분
-	
-	public String paramTest2() {
-		
+	@PostMapping("test2")
+	public String paramTest2(/*RequestParam은 여기에 보통 작성*/) {
+		log.info("문제없이 insert 가능한지 확인하기");
 		return "rediredc:/param/main";
 	}
 	
