@@ -1,10 +1,140 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <title>내 블로그</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        text-align: center;
+      }
+      header h1 {
+        margin: 0;
+      }
+      /*네비게이션 꾸미기*/
+      nav ul {
+        list-style: none;
+        padding: 0;
+      }
+      nav ul li {
+        display: inline;
+        margin: 0 10px; /* 상하 0 좌우 10 */
+      }
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>내 블로그에 오신 것을 환영합니다.</h1>
+      <nav>
+        <ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="#">소개</a></li>
+          <li><a href="#">연락처</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <div class="container">
+      <div class="posts">
+        <!-- article : 블로그나 , 글, 뉴스 기사, 포럼 게시물 등과 같이 독릭적으로
+                작성하거나 재사용할 수 있는 내용을 작성할 때 사용-->
+        <div class="article">
+          <h2>블로그 글 제목1</h2>
+          <p>
+            첫 번째 블로그 글 내용입니다. 우리 블로그에는 다양한 정보를 담고
+            있습니다.
+          </p>
+          <a href="#">더보기</a>
+        </div>
 
-</body>
+        <div class="article">
+            <h2>블로그 제목 2</h2>
+            <p>여기는 블로그로 소통하고 정보를 나누는 공간입니다.</p>
+            <a href="#">더보기</a>
+        </div>
+
+      </div>
+      <!--aside : 본문 내용과 간접적으로 관련된 내용을 표시할 때 사용
+                    예를 들어 블로그 페이지의 사이드 바, 광고, 관련 링크, 저자, 등-->
+      <div class="aside">
+        <h2>소개</h2>
+        <p>안녕하세요. 저의 블로그입니다. 제 블로그에 오신 것을 환영합니다.
+            여기서 다양한 생각과 경험을 공유합니다.
+        </p>
+
+      </div>
+      <style>
+        /* visitor-comments 방문자 댓글 공간 꾸미기 */
+        .visitor-comment{
+            flex:1 1 100%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #f2f2f2;
+            margin-top: 20px;
+        }
+        .visitor-comment h2{
+            margin-top: 0;
+        }
+        .visitor-comment form {
+            display: flex;
+            flex-direction: column;
+
+        }
+        .visitor-comment label {
+            margin: 10px 0 5px; /*위 오른쪽왼쪽 아래*/
+        }
+        .visitor-comment input,
+        .visitor-comment textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .visitor-comment button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer{
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+        }
+        /* .visitor-comment button 을 꾸며주기
+        테두리 없애기 바탕 #333 글자색 white
+        테두리둥글기 5px 버튼 위에 마우스 올리면 손가락 모양으로 변경
+        위여백 10px
+        패딩 상하좌우 10px*/
+      </style>
+      <div class="visitor-comments">
+        <h2>방문자 의견</h2>
+        <form action="#" method="post">
+            <label>이름</label>
+            <input type="text">
+            <label>의견:</label>
+            <textarea rows="4"></textarea>
+            <button type="submit">제출</button>
+        </form>
+      </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 내 블로그. 모근 권리 보유.</p>
+    </footer>
+  </body>
 </html>

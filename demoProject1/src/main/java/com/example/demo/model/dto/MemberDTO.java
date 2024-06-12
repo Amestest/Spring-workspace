@@ -15,8 +15,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor //기초생성자
 @ToString
-public class MemberDTD {
+public class MemberDTO {
 	// 나중에 db랑 연결할 모델들 작성
+//필드
 	private String memberId;
 	private String memberPw;
 	private String memberName;
