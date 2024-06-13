@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>ThymeLeaf</title>
@@ -16,7 +16,7 @@
 		(jsp 템플릿 엔진 중 하나)
 		<a href="https://www.thymeleaf.org/">타임리프 홈페이지로 이동하기</a>
 	</pre>
-	
+
 	<h3>2. thymeleaf</h3>
 	<pre>
 		웹 및 독립 실행형 환경 모두를 위한 최신 서버 측 Java 템플릿 엔진
@@ -36,9 +36,28 @@
 		
 		html xmlns:별칭="템플릿가져올 주소"
 	</pre>
-	
+
 	<ol>
 		<li><a href="/example/ex1">타임리프 예제</a></li>
+
+		<li>
+			<form action="/example/ex2" method="post">
+				<h4>타임리프 예제</h4>
+				이름 : <input type="text" name="inputName"><br> 
+				나이 : <input type="number" name="inputAge"><br>
+				<br>
+				
+				색상 :
+				Red <input type="checkbox" name="color" value="Red">
+				Green <input type="checkbox" name="color" value="Green">
+				Blue <input type="checkbox" name="color" value="Blue">
+				<button>제출하기</button>
+			</form>
+		</li>
+		<li>
+			<a href="/example/ex3">타임리프 예제3</a>
+		</li>
 	</ol>
+	<th:block th:replace="~{layout/footer}"></th:block>
 </body>
 </html>

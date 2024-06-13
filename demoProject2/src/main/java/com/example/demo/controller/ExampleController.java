@@ -1,9 +1,17 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.dto.MemberDTO;
+import com.example.demo.dto.StudentDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +27,7 @@ public class ExampleController {
 	  - @SessionAttributes와 함게 사용할 경우 session scope 반환
 	  [기본 사용법]
 	  Model.addAttribute("key","value");
+	  Model.addAttribute("html에 전달 가능한 이름","전달할 값을 작성");
 	    */
 	@GetMapping("ex1") //  /exmaple/ex1 주소로 보여지는 값
 	public String ex1(HttpServletRequest req, Model model) {
@@ -26,6 +35,107 @@ public class ExampleController {
 		// 나중에 db에서 가져온 값ㅇ르 보여줄 때 사용하는 메서드
 		req.setAttribute("test1", "HttpServletRequest로 전달한 값");
 		model.addAttribute("test2","Model로 전달할 값");
+		
+		// 단일 값(숫자, 문자열) Model을 이용해서 html 전달
+		model.addAttribute("productName","종이컵");
+		
+		//price로 2000원을 전달
+		model.addAttribute("price",2000);
+		model.addAttribute("productCompany","KHCOMPANY");
+		
+		// 복수값(배열, LIst) Model을 이용해서 html 전달
+		List<String> fruitList = new ArrayList<>();
+		fruitList.add("사과");
+		fruitList.add("딸기");
+		fruitList.add("바나나");
+		
+		model.addAttribute("fruitList",fruitList);
+		
+		List<String> animal =  new ArrayList<>();
+		animal.add("호랑이");
+		animal.add("토끼");
+		animal.add("거북이");
+		
+		model.addAttribute("animal",animal);
+		
+		// DTO 객체 Model을 이용해서 html 전달
+		StudentDTO std = new StudentDTO();
+		std.setStudentNo("12345");
+		std.setName("홍길동");
+		std.setAge(30);
+		
+		model.addAttribute("std",std);
+		
+		MemberDTO mem = new MemberDTO();
+		mem.setMemberNo("1");
+		mem.setMemberName("강영희");
+		mem.setMemberAge("50");
+		
+		model.addAttribute("mem",mem);
+		
+		/*
+		 model.addAttribute("별칭",별칭이 아래와 똑같이 않아도 됨 );
+		 <li th:text="${별칭}">mem 객체 </li>
+		 
+		 model.addAttribute("a",b );
+		 <li th:text="${a}">mem 객체 </li>
+		 
+		 나중에 이름이 다르면 문제가 생겼을 때 찾기 어렵기 때문에
+		 a와 b의 별칭을 동일하게 설정해주는 것이 좋음
+		  */
+		
+		
+		//List<StudentDTO> 객체에 Model을 이용해서 html 전달
+		List<StudentDTO> stdList = new ArrayList<>();
+		
+		stdList.add(new StudentDTO("1111","김일번",10));
+		stdList.add(new StudentDTO("2222","김이번",20));
+		stdList.add(new StudentDTO("3333","김삼번",30));
+		
+		model.addAttribute("stdList",stdList);
+		//List<MeverDTO> 객체에 Model을 이용해서 html 전달 memList
+		// 100 박세모 40
+		// 200 윤네모 60
+		// 300 최다이아 50
+		
+		List<MemberDTO> memList = new ArrayList<>();
+		
+		memList.add(new MemberDTO("100","박세모","40"));
+		memList.add(new MemberDTO("200","윤네모","60"));
+		memList.add(new MemberDTO("300","최다이아","50"));
+		
+		model.addAttribute("memList",memList);
 		return "exmaple/ex1"; //templates/example/ex1.html 파일 바라보는것
 	}
+	
+	
+	/*
+	 * @PathVariable
+	 * - 주소 중 일부분을 변수 값 처럼 사용
+	 * + 해당 어노테이션으로 얻어온 값은 request scope에 세팅
+	 * */
+	@GetMapping("/ex2/{number}")
+	public String pathVariableTest(
+			@PathVariable("number") int number
+			// 주소 중 {number} 부분의 값을 가져와 매개변수에 저장
+			// + requestScope 세팅
+			){
+		return "example/testResult";
+		
+	}
+	@PostMapping("ex2")
+	public String ex2(Model model) {
+		model.addAttribute("str","<h1>테스트중 &times; </h1>");
+		return "exmaple/ex2";
+		
+	}
+	@GetMapping("ex3")
+	public String ex(Model model) {
+		model.addAttribute("boardNo",10);
+		model.addAttribute("key","제목");
+		model.addAttribute("query","검색어");
+		
+		return "example/ex3";
+	}
+	
 }
