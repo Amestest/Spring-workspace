@@ -20,6 +20,25 @@
 			<!-- 위에 작성된 a 태그의 href 속성은 똑같은 값 -->
 			<a th:href="@{/board(key=${key}, query=${query})}">@{} 사용</a>
 		</li>
+		<li>
+			PathVariable : 주소 중 일부분을 변수값처럼 변경 가능하게 사용
+			<ul>
+			<li>
+				<a href="/example/ex2/1">/example/ex2/1로 이동</a>
+			</li>
+			<li>
+				<a href="/example/ex2/2">/example/ex2/2로 이동</a>
+			</li>
+			<li>
+				<a href="/example/ex2/3">/example/ex2/3로 이동</a>
+			</li>
+			<li>
+				<a th:href="@{/example/ex2/{number}(number=${boardNo})}">
+					 th:href="@{/고정된주소값/{변경될변수명}(변경될변수명=${db에서 가져올값})"
+				</a>
+			</li>
+			</ul>
+		</li>
 	</ul>
 </body>
 </html>

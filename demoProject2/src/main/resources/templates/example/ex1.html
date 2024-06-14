@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- th 속성 추가 네임스페이스로 th를 사용하겠다. 선언 -->
-<html lang="en" xmlns:th="http://www.tymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>타임리프 예제 1</title>
@@ -73,8 +73,8 @@
 	</ul>
 	<ul>
 		<li th:text="${fruitList[0]}">0번 째 과일 이름</li>
-		<li th:text="${fruitList[0]}">1번 째 과일 이름</li>
-		<li th:text="${fruitList[0]}">2번 째 과일 이름</li>
+		<li th:text="${fruitList[1]}">1번 째 과일 이름</li>
+		<li th:text="${fruitList[2]}">2번 째 과일 이름</li>
 	</ul>
 	<ul>
 		<li th:text="${animal}">동물리스트</li>
@@ -95,13 +95,15 @@
 	<ul>
 		<th:block th:each="fruit : ${fruitList}">
 			<li th:text=${fruit}>과일명</li>
+			</th:block>
 	</ul>
 	<!--  th.each 사용해서 animal 모두 보기 변수명 a -->
-	<hr>
+	
 	<ul>
-		<th:block th:each="a : ${animal}>
+		<th:block th:each="a : ${animal}">
 		
 			<li th:text="${a}">동물명</li>
+			</th:block>
 	</ul>
 	<!-- DTO -->
 	<!--  DTO 객체 출력 -->
@@ -109,7 +111,7 @@
 	<h4>방법 1번</h4>
 	<ul>
 		<li th:text="${std}">std 객체</li>
-		<!-- StudentDTO std = new StudentDTO(); std.setStudentNo("12345");	std.setName("홍길동");std.setAge(30); -->
+		<!-- StudentDTO (studentNo=12345,name=홍길동,age=30) -->
 		<li th:text="${std.studentNo}">학번</li>
 		<!--12345  -->
 		<li th:text="${std.name}">이름</li>
@@ -168,13 +170,14 @@
 			<tr th:each="std:${stdList}" th:object="${std}">
 				<td th:text="*{studentNO}">학번</td>
 				<td th:text="*{name}">이름</td>
-				<td th:text="*{age}">나이/td>
+				<td th:text="*{age}">나이</td>
+				</tr>
 		</tbody>
 	</table>
 	<!-- table 이용해서 mem 출력 -->
 	<h4>방법 4번</h4>
 	<h5>DTO가 담긴 mem 출력하기</h5>
-	<table border="2">
+	<table border="1">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -188,6 +191,7 @@
 				<td th:text="*{memberNO}">번호</td>
 				<td th:text="*{memberName}">이름</td>
 				<td th:text="*{memberAge}">나이</td>
+				</tr>
 		</tbody>
 	</table>
 	<th:block th:replace="~{layout/footer}"></th:block>
