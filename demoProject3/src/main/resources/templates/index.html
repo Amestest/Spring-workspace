@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>회원가입하기</title>
+</head>
+<body>
+	<h1>회원가입하고 회원가입한 정보를 DB에 저장하기</h1>
+	
+	<form th:action="@{/register}" method="post" th:object="${mem}">
+			<!-- no 값은 자동으로 1씩 증가해서 들어가게끔 설정해줬기 때문에 작성 x -->
+			name : <input type="text" th:field="*{memberName}"><br>
+			age : <input type="text" th:field="*{memberAge}"><br>
+			phone : <input type="text" th:field="*{memberPhone}"><br>
+		<button>제출하긴</button>
+	</form>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.example.demo.mapper.drinks-Mapper">
+	<insert id="insertDrinks" parameterType="com.example.domo.mapper.DrinksMapper">
+	INSERT INTO drink (drink_Id ,drink_Name ,drinks_Price ,drinks_Quantity)
+						
+					VALUES(drinks_seq.NEXTVAL, #{goodsName},#{goodsPrice},#{goodsQuantity})
+	</insert>
+</mapper>
