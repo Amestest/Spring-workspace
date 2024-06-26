@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>홈페이지 메인</title>
+</head>
+<body>
+<!-- session 은 우리가 특별히 model.addAttribute나 어떤 값으로 전달하지 않아도
+	 컴퓨터에서 임시로 저장한다는 의미가 담겨있고,
+	 seesion.setAttribute("임시저장에사용할변수명", 변수에담을내용); 자바에서 전달이 오면
+	 
+	 html파일에서는
+	 session.임시저장에사용할변수명 을 작성해주면 됨
+	 맨 앞에 session는 컴퓨터상의 약속이기때문에 붙여줌 -->
+	<div th:if="${session.loginSession != null}">
+		<p th:text="${session.loginSession.member_name} + '환영해요.' "></p> 
+		<a href="/logout">로그아웃</a>
+		<a href="/myPage">마이페이지</a>
+	</div>
+	
+		<div th:if="${session.loginSession == null}">
+		<p>로그인 하지 않았습니다.</p> 
+		<a href="">회원가입하기</a>
+		<a href="/login">로그인하기</a>
+		<a href="/search">회원정보검색하기</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이메일로 인증번호 보내기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function sendNumber(){
+		$("#mail_number").css("display","block"); //인증번호창 보이게 설정
+		$.ajax({ //실시간으로 움직임을 처리하는 자바스크립트
+				url:"/mail", 
+				//form action으로 자바와의 주소 연결을 했다면
+				//ajax는 url로 연결로 자바와의 주소 연결 form action과 똑같은 역할
+				type:"post",
+				dataType:"json",
+				data:{"mail" : $("#mail").val()}, //mail이라는 key값으로 idmail에 작성된 값 가져오기
+				success: function(data){
+					alert("인증번호 발송 성공!");
+					$("#Confirm").attr("value",data);
+				}
+		});
+	}
+	function confirmNumber(){
+        var number1 = $("#number").val();
+        var number2 = $("#Confirm").val();
+
+        if(number1 == number2){
+            alert("인증되었습니다.");
+        }else{
+            alert("번호가 다릅니다.");
+        }
+    }
+</script>
+
+</head>
+<body>
+	<h1>이메일로 인증번호 보내기</h1>
+	  <div id="mail_input" name="mail_input">
+      <input type="text" name="mail" id="mail" placeholder="이메일 입력">
+      <button type="button" id="sendBtn" name="sendBtn" onclick="sendNumber()">인증번호</button>
+  </div>
+      <br>
+  <div id="mail_number" name="mail_number" style="display: none">
+    <input type="text" name="number" id="number" placeholder="인증번호 입력">
+    <button type="button" name="confirmBtn" id="confirmBtn" onclick="confirmNumber()">이메일 인증</button>
+  </div>
+  <br>
+    <input type="text" id="Confirm" name="Confirm" style="display: none" value="">
+</body>
+</html>
