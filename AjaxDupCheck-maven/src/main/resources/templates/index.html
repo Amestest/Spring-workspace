@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ajax를 활용한 중복체크(maven)</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#중복확인버튼').click(function(){
+			var.htmlItemName = $('#아이템명').val();
+			$.ajax({
+				url:'/itemCheck',
+				type:'GET',
+				data: {controllerItemName:htmlItemName},
+				success:function(res){
+				if(res.isCheck){
+					$('#중복확인메세지').text("이미 존재하는 상품명입니다.");
+				}else{
+					$("#중복확인메세지").text("사용 가능한 상품명입니다.")
+				}	
+				},
+				error: function(){
+					$("#중복확인메세지").text("알 수 없는 오류 발생");
+				}
+				
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<h1>Ajax를 활용한 중복체크(maven)</h1>
+	<label>상품명</label>
+	<input type="text" id="아이템명" name="itemName">
+	<button id="중복확인버튼">중복확인버튼</button>
+	<p id="중복확인메세지"></p>
+</body>
+</html>
