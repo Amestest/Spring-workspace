@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kh.mapper.TodoMapper">
+	<select id="idCheck">
+	SELECT COUNT(*) FROM TODO_MEMBER WHERE ID = #{id}
+	</select>
+
+	<insert id="signup">
+		INSERT INTO TODO_MEMBER
+		VALUES(SEQ_TODO_MEMBER_NO.NEXTVAL, #{id}, #{pw}, #{name})
+	</insert>
+	
+	<select id="login" resultType="TodoMember">
+		SELECT * FROM TODO_MEMBER
+		WHERE ID = #{id}
+		AND PW = #{pw}
+	</select>
+	
+</mapper>

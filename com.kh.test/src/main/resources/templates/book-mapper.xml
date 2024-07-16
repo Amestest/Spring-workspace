@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.test.mapper.BookMapper">
+
+  <insert id="insertBook" parameterType="com.kh.test.dto.Book">
+    INSERT INTO book (book_id, book_isbn, book_title, book_author, book_pubdate)
+    VALUES (book_seq.NEXTVAL, #{book_isbn}, #{book_title}, #{book_author}, SYSDATE)
+  </insert>
+
+</mapper>

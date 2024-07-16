@@ -17,11 +17,7 @@ public class GoodsController {
 	@Autowired
 	private GoodsService goodsService;
 	
-	@GetMapping("/")
-	public String htmlStart(){
-		return "index";
-	}
-	
+		
 	@ResponseBody //json Type 값을 가져오겠다.
 	@GetMapping("/itemCheck")
 	public Map<String, Object> getGoods(@RequestParam String item_name){
